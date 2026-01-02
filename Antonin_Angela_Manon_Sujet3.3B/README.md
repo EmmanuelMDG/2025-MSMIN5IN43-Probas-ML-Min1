@@ -82,33 +82,47 @@ nltk.download('stopwords')
 
 ## 📊 Utilisation
 
-### Phase 1 : Collecte et exploration des données
+### Phase 1 : Collecte et exploration des données ✅
 
 ```bash
 # Lancer Jupyter pour l'exploration
 jupyter notebook notebooks/
 ```
 
-### Phase 2 : Baseline
+### Phase 2 : Baseline ✅
+
+Les modèles baseline sont déjà entraînés et sauvegardés dans `models/`.
+
+### Phase 3 : CamemBERT Multi-tâches ⚡
 
 ```bash
-# Entraîner le modèle baseline
-python src/models/baseline.py
+# Entraîner le modèle CamemBERT (script simplifié)
+python run_training.py
+
+# Ou directement avec le module
+python -m src.training.train
 ```
 
-### Phase 3 : CamemBERT Multi-tâches
+**Configuration** :
+- Batch size : 16 (réduire à 8 si problèmes de mémoire)
+- Époques : 5 (avec early stopping)
+- Learning rate encodeur : 2e-5
+- Learning rate têtes : 1e-4
+- Device : Auto-détection (CUDA > MPS > CPU)
 
-```bash
-# Entraîner le modèle CamemBERT
-python src/training/train.py
-```
+Le modèle sera sauvegardé dans `models/best_model.pt`
 
 ### Phase 4 : Évaluation
 
 ```bash
-# Évaluer le modèle
-python src/evaluation/metrics.py
+# Évaluer le modèle sur le test set
+python evaluate_model.py
 ```
+
+Cela génère :
+- Rapports de classification détaillés (F1, Precision, Recall)
+- Matrices de confusion pour les 3 tâches
+- Graphiques sauvegardés dans `results/`
 
 ## 🎯 Objectifs de Performance
 
