@@ -1,0 +1,96 @@
+{
+  "train": [
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.6489125385593909,
+      "irony_loss": NaN,
+      "emotion_f1": 0.17902554491271716,
+      "sentiment_acc": 0.5647626709573612,
+      "irony_f1": 0.041708575190961494
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.1989048547171152,
+      "irony_loss": NaN,
+      "emotion_f1": 0.2622903069537481,
+      "sentiment_acc": 0.7493966210780371,
+      "irony_f1": 0.10213041019149453
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.11414135618803975,
+      "irony_loss": NaN,
+      "emotion_f1": 0.30358987711612073,
+      "sentiment_acc": 0.7723250201126307,
+      "irony_f1": 0.15802698929734763
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.061175351487830855,
+      "irony_loss": NaN,
+      "emotion_f1": 0.3159817909315761,
+      "sentiment_acc": 0.7912308930008045,
+      "irony_f1": 0.1958566201276197
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.04376867210540252,
+      "irony_loss": NaN,
+      "emotion_f1": 0.33631400777985687,
+      "sentiment_acc": 0.7956556717618665,
+      "irony_f1": 0.20523024651196412
+    }
+  ],
+  "val": [
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.27993934639753437,
+      "irony_loss": NaN,
+      "emotion_f1": 0.3892688643954238,
+      "sentiment_acc": 0.72508038585209,
+      "irony_f1": 0.08838095238095238
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.24010954333994633,
+      "irony_loss": NaN,
+      "emotion_f1": 0.3440673057509958,
+      "sentiment_acc": 0.7427652733118971,
+      "irony_f1": 0.15018143143143145
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.24799011946202087,
+      "irony_loss": NaN,
+      "emotion_f1": 0.34263083359216334,
+      "sentiment_acc": 0.7363344051446945,
+      "irony_f1": 0.12780815424569555
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.3523983277846128,
+      "irony_loss": NaN,
+      "emotion_f1": 0.3558992628266853,
+      "sentiment_acc": 0.7282958199356914,
+      "irony_f1": 0.19316177649510982
+    },
+    {
+      "loss": NaN,
+      "emotion_loss": NaN,
+      "sentiment_loss": 0.3338554975612519,
+      "irony_loss": NaN,
+      "emotion_f1": 0.3529730771649616,
+      "sentiment_acc": 0.7379421221864951,
+      "irony_f1": 0.16866096866096866
+    }
+  ]
+}

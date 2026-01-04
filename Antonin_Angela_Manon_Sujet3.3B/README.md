@@ -1,152 +1,55 @@
-# 🎯 Projet NLP - Analyse de Sentiment Multi-dimensionnelle
+# 🚀 Guide de Démarrage Rapide - Projet NLP Multi-tâches
 
-## 📋 Description
+Ce projet a été finalisé pour inclure l'entraînement sur des données réelles (Allociné), la détection d'ironie, et une interface de démonstration.
 
-Système d'analyse de sentiment avancé utilisant CamemBERT pour détecter :
-- **Émotions** (7 classes : Joie, Tristesse, Colère, Peur, Surprise, Dégoût, Neutre)
-- **Sentiment** (3 classes : Positif, Négatif, Neutre)
-- **Ironie** (2 classes : Ironique, Non-ironique)
+## � Description du Projet
 
-## 🏗️ Structure du Projet
+Ce projet vise à développer un système d'analyse de sentiment avancé pour le français, capable d'aller au-delà de la simple classification positif/négatif. L'objectif est de capturer la richesse émotionnelle des textes (tweets, critiques, commentaires) en détectant simultanément :
+1.  **Les Émotions fines** (Joie, Tristesse, Colère, Peur, Surprise, Dégoût).
+2.  **Le Sentiment global** (Positif, Négatif, Neutre).
+3.  **L'Ironie**, souvent négligée mais cruciale pour comprendre le vrai sens d'un message.
 
-```
-Antonin_Angela_Manon_Sujet3.3B/
-├── data/                      # Données brutes et traitées
-├── notebooks/                 # Jupyter notebooks pour exploration
-├── src/                       # Code source
-│   ├── data/                 # Chargement et preprocessing
-│   │   ├── data_loader.py
-│   │   └── preprocessing.py
-│   ├── models/               # Modèles (baseline + CamemBERT)
-│   │   ├── baseline.py
-│   │   ├── camembert_multitask.py
-│   │   └── config.py
-│   ├── training/             # Scripts d'entraînement
-│   │   ├── train.py
-│   │   └── utils.py
-│   └── evaluation/           # Métriques et visualisations
-│       ├── metrics.py
-│       ├── visualization.py
-│       └── error_analysis.py
-├── models/                    # Modèles sauvegardés
-├── results/                   # Résultats et graphiques
-├── requirements.txt          # Dépendances Python
-└── README.md                 # Ce fichier
-```
+L'idée de départ était de comparer une approche classique (Baseline TF-IDF) avec une approche Deep Learning de pointe (CamemBERT) fine-tunée en mode multi-tâches, permettant au modèle d'apprendre des corrélations entre ces différentes dimensions (ex: l'ironie inverse souvent la polarité du sentiment).
 
-## 🚀 Installation et Configuration
+## �📋 Prérequis
 
-### 1. Cloner le projet
+- Python 3.8+
+- Carte graphique NVIDIA (recommandé) ou CPU
 
-Si ce n'est pas déjà fait :
-```bash
-git clone <url_du_repo>
-cd Antonin_Angela_Manon_Sujet3.3B
-```
+## 🛠️ Installation
 
-### 2. Créer un environnement virtuel
+1.  Installer les dépendances :
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-**Windows (PowerShell)** :
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
+## ⚡ Lancement Rapide
 
-**Linux/Mac** :
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+Un script unique a été créé pour gérer tout le cycle de vie du projet (téléchargement, entraînement, évaluation).
 
-### 3. Installer les dépendances
+1.  **Lancer le pipeline complet** (Téléchargement données + Entraînement Baseline + Entraînement CamemBERT) :
+    ```bash
+    python run_pipeline.py
+    ```
+    *Note : L'entraînement peut prendre 15-30 minutes sur GPU.*
 
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
+2.  **Lancer la démo interactive** :
+    Une fois l'entraînement terminé, lancez l'interface Web :
+    ```bash
+    streamlit run src/app/app.py
+    ```
 
-### 4. Télécharger les ressources NLP (optionnel)
+## 📝 Résumé des Modifications Apportées
 
-```python
-# Dans un terminal Python ou notebook
-import nltk
-import spacy
+- **Données Réelles** : Intégration du dataset `allocine` via la librairie HuggingFace `datasets`.
+- **Multi-tâches** : Gestion des labels manquants (ex: Allociné n'a pas d'émotions) via masquage dans la Loss function.
+- **Ironie** : Implémentation fonctionnelle de la tête de classification Ironie.
+- **Baseline** : Script `train_baseline.py` ajouté pour comparer TF-IDF vs CamemBERT.
+- **Frontend** : Application `Streamlit` pour tester le modèle en temps réel.
+- **Nettoyage** : Code refactorisé et structure simplifiée.
 
-# Télécharger les ressources NLTK
-nltk.download('punkt')
-nltk.download('stopwords')
+Pour plus de détails sur l'architecture et le projet, voir [PROJECT_DETAILS.md](PROJECT_DETAILS.md).
 
-# Télécharger le modèle spaCy français
-# python -m spacy download fr_core_news_sm
-```
-
-## 📊 Utilisation
-
-### Phase 1 : Collecte et exploration des données ✅
-
-```bash
-# Lancer Jupyter pour l'exploration
-jupyter notebook notebooks/
-```
-
-### Phase 2 : Baseline ✅
-
-Les modèles baseline sont déjà entraînés et sauvegardés dans `models/`.
-
-### Phase 3 : CamemBERT Multi-tâches ⚡
-
-```bash
-# Entraîner le modèle CamemBERT (script simplifié)
-python run_training.py
-
-# Ou directement avec le module
-python -m src.training.train
-```
-
-**Configuration** :
-- Batch size : 16 (réduire à 8 si problèmes de mémoire)
-- Époques : 5 (avec early stopping)
-- Learning rate encodeur : 2e-5
-- Learning rate têtes : 1e-4
-- Device : Auto-détection (CUDA > MPS > CPU)
-
-Le modèle sera sauvegardé dans `models/best_model.pt`
-
-### Phase 4 : Évaluation
-
-```bash
-# Évaluer le modèle sur le test set
-python evaluate_model.py
-```
-
-Cela génère :
-- Rapports de classification détaillés (F1, Precision, Recall)
-- Matrices de confusion pour les 3 tâches
-- Graphiques sauvegardés dans `results/`
-
-## 🎯 Objectifs de Performance
-
-| Tâche | Métrique | Objectif Minimum | Objectif Optimal |
-|-------|----------|------------------|------------------|
-| Émotions | F1 (macro) | 0.65 | 0.75+ |
-| Sentiment | Accuracy | 0.80 | 0.88+ |
-| Ironie | F1 | 0.60 | 0.70+ |
-
-## ⚡ Points Clés à Retenir
-
-✅ **À FAIRE** :
-- Fixer les seeds (reproductibilité)
-- Stratifier le split train/val/test
-- Garder les emojis dans le preprocessing
-- Utiliser F1-Score comme métrique principale
-- Implémenter early stopping
-- Analyser les erreurs
-
-❌ **À NE PAS FAIRE** :
-- Prétraiter avant de splitter
-- Supprimer emojis/ponctuation
-- Se fier uniquement à l'accuracy
-- Tuner sur le test set
 
 ## 📚 Ressources
 
@@ -159,6 +62,7 @@ Cela génère :
 - Antonin
 - Angela
 - Manon
+
 
 ## 📝 License
 

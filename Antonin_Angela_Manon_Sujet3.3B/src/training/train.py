@@ -119,18 +119,18 @@ def create_dataloaders(
     # Créer les datasets
     train_dataset = MultiTaskDataset(
         texts=train_df['text'].tolist(),
-        emotion_labels=train_df['emotion_id'].tolist(),
-        sentiment_labels=train_df['sentiment'].tolist(),
-        irony_labels=train_df['is_ironic'].tolist(),
+        emotion_labels=train_df['emotion_label'].tolist(),
+        sentiment_labels=train_df['sentiment_label'].tolist(),
+        irony_labels=train_df['irony_label'].tolist(),
         tokenizer=tokenizer,
         max_length=128
     )
     
     val_dataset = MultiTaskDataset(
         texts=val_df['text'].tolist(),
-        emotion_labels=val_df['emotion_id'].tolist(),
-        sentiment_labels=val_df['sentiment'].tolist(),
-        irony_labels=val_df['is_ironic'].tolist(),
+        emotion_labels=val_df['emotion_label'].tolist(),
+        sentiment_labels=val_df['sentiment_label'].tolist(),
+        irony_labels=val_df['irony_label'].tolist(),
         tokenizer=tokenizer,
         max_length=128
     )
@@ -481,7 +481,10 @@ def train_model(
 
 if __name__ == "__main__":
     # Lancer l'entraînement
+    # Chemin relatif au script pour être robuste quel que soit le CWD
+    data_path = Path(__file__).parent.parent.parent / "data" / "processed"
+    
     model, history = train_model(
-        data_path="../../data/processed"
+        data_path=str(data_path)
     )
 

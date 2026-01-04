@@ -1,27 +1,5 @@
 {
-  "total_examples": 700,
-  "train_size": 490,
-  "val_size": 105,
-  "test_size": 105,
-  "emotion_distribution": {
-    "joie": 100,
-    "tristesse": 100,
-    "colere": 100,
-    "peur": 100,
-    "surprise": 100,
-    "degout": 100,
-    "neutre": 100
-  },
-  "sentiment_distribution": {
-    "0": 400,
-    "2": 200,
-    "1": 100
-  },
-  "irony_distribution": {
-    "0": 556,
-    "1": 144
-  },
-  "avg_text_length": 32,
-  "max_text_length": 46,
-  "min_text_length": 21
+  "train_size": 2486,
+  "val_size": 622,
+  "test_size": 652
 }

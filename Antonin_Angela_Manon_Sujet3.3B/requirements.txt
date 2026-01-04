@@ -12,6 +12,7 @@ torchaudio>=2.0.0
 transformers>=4.35.0
 tokenizers>=0.15.0
 sentencepiece>=0.1.99
+datasets>=2.14.0
 
 # ---- Data Processing ----
 pandas>=2.0.0

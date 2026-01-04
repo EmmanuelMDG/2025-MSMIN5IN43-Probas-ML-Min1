@@ -73,9 +73,9 @@ class CamemBERTMultitask(nn.Module):
         )
         
         # 4. Loss functions
-        self.criterion_emotion = nn.CrossEntropyLoss()
-        self.criterion_sentiment = nn.CrossEntropyLoss()
-        self.criterion_irony = nn.CrossEntropyLoss()
+        self.criterion_emotion = nn.CrossEntropyLoss(ignore_index=-1)
+        self.criterion_sentiment = nn.CrossEntropyLoss(ignore_index=-1)
+        self.criterion_irony = nn.CrossEntropyLoss(ignore_index=-1)
         
         print(f"✅ Modèle créé avec {self.count_parameters():,} paramètres")
     
